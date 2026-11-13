@@ -59,22 +59,54 @@ All six questions generated correct answers with source citations.
 - Retrieval quality depends on query wording.
 - The system cannot reliably answer questions outside the document.
 
-  ## Docker Setup
+ ## Docker Setup
 
-  ### Build the Docker image
+### Prerequisites
+- Docker installed on your system.
+- A valid Google Gemini API key.
+
+### 1. Build the Docker image
+
+Run this command from the project root directory:
+
 ```bash
 docker build -t hindi-rag .
+```
 
-### Run the project
+### 2. Configure the Gemini API key
 
-Set your Gemini API key using the `GEMINI_API_KEY` environment variable.
-**PowerShell:**
+The application requires the `GEMINI_API_KEY` environment variable.
+
+**Windows PowerShell:**
+
 ```powershell
 $env:GEMINI_API_KEY="your_api_key"
-docker run -it --rm -e GEMINI_API_KEY=$env:GEMINI_API_KEY hindi-rag
+```
 
 **Linux/macOS:**
+
 ```bash
 export GEMINI_API_KEY="your_api_key"
+```
+
+### 3. Run the Docker container
+
+**Windows PowerShell:**
+
+```powershell
+docker run -it --rm -e GEMINI_API_KEY=$env:GEMINI_API_KEY hindi-rag
+```
+
+**Linux/macOS:**
+
+```bash
 docker run -it --rm -e GEMINI_API_KEY=$GEMINI_API_KEY hindi-rag
-Replace `your_api_key` with your own Gemini API key. Never commit or share your API key.
+```
+
+Replace `your_api_key` with your actual Gemini API key. Never commit or share your API key.
+
+### Notes
+- The Docker image uses Python 3.11.
+- Dependencies are installed from `requirements.txt`.
+- The application starts using `src/rag_pipeline.py`.
+- The Docker setup is provided for containerized execution. It should be tested in a Docker-enabled environment before production use.
