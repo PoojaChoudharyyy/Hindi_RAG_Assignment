@@ -58,3 +58,23 @@ All six questions generated correct answers with source citations.
 - OCR is not implemented for scanned documents.
 - Retrieval quality depends on query wording.
 - The system cannot reliably answer questions outside the document.
+
+  ## Docker Setup
+
+  ### Build the Docker image
+```bash
+docker build -t hindi-rag .
+
+### Run the project
+
+Set your Gemini API key using the `GEMINI_API_KEY` environment variable.
+**PowerShell:**
+```powershell
+$env:GEMINI_API_KEY="your_api_key"
+docker run -it --rm -e GEMINI_API_KEY=$env:GEMINI_API_KEY hindi-rag
+
+**Linux/macOS:**
+```bash
+export GEMINI_API_KEY="your_api_key"
+docker run -it --rm -e GEMINI_API_KEY=$GEMINI_API_KEY hindi-rag
+Replace `your_api_key` with your own Gemini API key. Never commit or share your API key.
